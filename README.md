@@ -1,16 +1,19 @@
 This C++ utility is designed for scientific and engineering data analysis, providing advanced visualization and comparison capabilities for CSV datasets. It enables engineers to perform detailed parameter analysis, generate multi-batch visualization graphs, and calculate precise parameter deltas at specific points of interest.
-Key Features
 
-CSV Data Import: Robustly parses structured data files with mixed numeric/non-numeric content
-Parameter Comparison: Calculates and visualizes differences between any two measured parameters
-Batch Visualization: Efficiently generates graphical representations for large parameter sets
-Interactive Analysis: Allows users to select specific data points for detailed examination
+## Key Features
 
-Technical Implementation
-Data Structure Model
+- **CSV Data Import:** Robustly parses structured data files with mixed numeric/non-numeric content
+- **Parameter Comparison:** Calculates and visualizes differences between any two measured parameters
+- **Batch Visualization:** Efficiently generates graphical representations for large parameter sets
+- **Interactive Analysis:** Allows users to select specific data points for detailed examination
+
+## Technical Implementation
+
+### Data Structure Model
+
 The application uses a flexible data model that can accommodate multiple parameters with varying units:
 
-```
+```cpp
 struct DataPoint {
     double x;
     std::map<std::string, double> values;
@@ -19,10 +22,11 @@ struct DataPoint {
 
 This approach provides an elegant way to store arbitrary parameter names and values for each measurement point, making the tool adaptable to different data formats.
 
-CSV Parsing Engine
+### CSV Parsing Engine
+
 The CSV parsing engine handles complex data files with robust error management:
 
-```
+```cpp
 void DataPostProcessor::readCSV(const std::string& filename) {
     // ... file opening and validation ...
     
@@ -53,10 +57,11 @@ void DataPostProcessor::readCSV(const std::string& filename) {
 
 This implementation gracefully handles common CSV issues like missing values, non-numeric data, and inconsistent column counts.
 
-Visualization System
+### Visualization System
+
 The utility leverages GNUPlot as its visualization backend, dynamically generating batch plots to handle large parameter sets efficiently:
 
-```
+```cpp
 void DataPostProcessor::generateGraphs(int startIndex, int endIndex) {
     // ... validation and setup ...
     
@@ -83,10 +88,11 @@ void DataPostProcessor::generateGraphs(int startIndex, int endIndex) {
 
 This batch approach allows efficient handling of datasets with hundreds or thousands of parameters, preventing memory issues or cluttered visualizations.
 
-Delta Analysis
+### Delta Analysis
+
 The delta analysis feature provides detailed comparison between any two parameters at specific points:
 
-```
+```cpp
 void DataPostProcessor::compareParameterDeltas(double xPoint, const std::string& param1, const std::string& param2) {
     // ... validation ...
     
@@ -104,16 +110,17 @@ void DataPostProcessor::compareParameterDeltas(double xPoint, const std::string&
 
 This feature creates a specialized dual-plot visualization showing both raw parameters and their difference, with clear marking of the point of interest.
 
-User Interface
+### User Interface
+
 The application features a straightforward command-line interface that guides users through:
 
-Loading CSV data files
-Viewing available parameters
-Selecting parameters for comparison
-Specifying analysis points
-Generating visualization batches
+- Loading CSV data files
+- Viewing available parameters
+- Selecting parameters for comparison
+- Specifying analysis points
+- Generating visualization batches
 
-```
+```cpp
 int main() {
     // ... initialization ...
     
@@ -134,16 +141,16 @@ int main() {
 }
 ```
 
-Technical Requirements
+### Technical Requirements
 
-C++17 compatible compiler
-GNUPlot (for visualization generation)
-Standard C++ libraries
+- C++17 compatible compiler
+- GNUPlot (for visualization generation)
+- Standard C++ libraries
 
-Usage Workflow
+### Usage Workflow
 
-Place CSV data file in the application directory as data.csv
-Run the application
-Review the list of available parameters
-Choose to compare specific parameters if needed
-View generated visualization graphs in the plots/ directory
+1) Place CSV data file in the application directory as data.csv
+2) Run the application
+3) Review the list of available parameters
+4) Choose to compare specific parameters if needed
+5) View generated visualization graphs in the plots/ directory
